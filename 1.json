@@ -1,0 +1,22 @@
+{
+"status": 200,
+"data":
+[
+    { "id":1,
+    "contest_id":100000,
+"contest_name":"xxxxx篮球比赛",
+"contest_desc":"xxxxxxxxxxxxx",
+"contest_pic":"1,2,4,6",
+"contest_date":"2019-07-05",
+"create_date":"2019-07-02"
+},
+    { "id":1,
+    "contest_id":100000,
+"contest_name":"xxxxx篮球比赛",
+"contest_desc":"xxxxxxxxxxxxx",
+"contest_pic":"1,2,4,6",
+"contest_date":"2019-07-05",
+"create_date":"2019-07-02"
+    }
+]
+}
