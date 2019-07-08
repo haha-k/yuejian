@@ -37,6 +37,8 @@ PREREQ_APPS=[
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework'
+
 ]
 
 PROJECT_APPS= [
@@ -51,9 +53,11 @@ PROJECT_APPS= [
     'train',
     'video',
     'account'
+
 ]
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
+
 
 
 MIDDLEWARE = [

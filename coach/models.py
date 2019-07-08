@@ -4,15 +4,16 @@ from club.models import *
 # Create your models here.
 
 class Coach(models.Model):
-    coach_id = models.CharField(max_length=11, verbose_name='教练id', blank=True,null=True, editable=False, db_index=True)
+    coach_id = models.AutoField(verbose_name='教练id',primary_key=True)
     coach_name = models.CharField(max_length=20, verbose_name='姓名', blank=False, null=False,editable=True)
     coach_phone = models.CharField(max_length=20,verbose_name='电话', blank=False, null=False)
-    # club_id = models.CharField(max_length=20,verbose_name='俱乐部id', blank=False, null=False)
     club_id = models.ForeignKey(Club,on_delete=models.CASCADE,verbose_name='俱乐部id', null=False)
     coach_email = models.CharField(max_length=30,verbose_name='邮箱', blank=False, null=False)
     coach_age = models.IntegerField(verbose_name='年龄', editable=True)
     coach_seniority = models.IntegerField(verbose_name='教龄',editable=True)
     coach_ismaster = models.IntegerField(verbose_name='是否大师', default=0)
+    coach_redate = models.DateTimeField(verbose_name='注册日期', auto_now_add=True)
+    update_date = models.DateTimeField(verbose_name='更新日期', auto_now=True)
 
     def __str__(self):
         return self.coach_name

@@ -4,11 +4,12 @@ from club.models import Club
 # Create your models here.
 
 class Blueprint(models.Model):
-    blueprint_id = models.CharField(max_length=11, verbose_name='晒图id', blank=True, null=True, editable=False, db_index=True)
-    blueprint_content = models.CharField(max_length=40, verbose_name='内容', blank=False, null=False)
-    blueprint_picture = models.CharField(max_length=40, verbose_name='图片', blank=False, null=False)
-    create_time = models.DateTimeField(verbose_name='发布时间',blank=False, null=False)
-    club_id = models.ForeignKey(Club,on_delete=models.CASCADE,verbose_name='俱乐部id', null=False)
+    blueprint_id = models.AutoField(verbose_name='晒图id',primary_key=True)
+    blueprint_content = models.TextField(max_length=2048, verbose_name='晒图内容', blank=False, null=False)
+    blueprint_picture = models.CharField(max_length=256, verbose_name='晒图图片', blank=False, null=False)
+    create_date = models.DateTimeField(verbose_name='发布时间',blank=False, null=False)
+    user_id = models.ForeignKey(User,on_delete=models.SET_NULL,verbose_name='用户id')
+    update_date = models.DateTimeField(verbose_name='更新日期', auto_now=True)
 
 
     class Meta:
@@ -20,14 +21,13 @@ class Blueprint(models.Model):
         return self.blueprint_id
 
 class Comment(models.Model):
-    comment_id = models.CharField(max_length=11, verbose_name='评论ID', blank=True, null=True, editable=False, db_index=True)
-    comment_user_id = models.CharField(max_length=11, verbose_name='用户id', blank=False, null=False)
+    comment_id = models.AutoField(verbose_name='评论id',primary_key=True)
     comment_content = models.TextField(max_length=1024,verbose_name='评论内容')
     comment_time = models.DateTimeField(verbose_name='评论时间',blank=False, null=False)
     # photo_id = models.CharField(max_length=11, verbose_name='图片ID', blank=True, null=True)
-    blueprint_id = models.ForeignKey(Club,on_delete=models.CASCADE,verbose_name='晒图id', null=False)
-    # from_user_id = models.CharField(max_length=11, verbose_name='评论用户id', blank=False, null=False)
-    # to_user_id = models.CharField(max_length=11, verbose_name='被评论用户id', blank=False, null=False)
+    blueprint_id = models.IntegerField(verbose_name='晒图id', null=False)
+    from_user_id = models.IntegerField(verbose_name='评论用户id', null=False)
+    update_date = models.DateTimeField(verbose_name='更新日期', auto_now=True)
 
     class Meta:
         verbose_name = "评论"
@@ -38,9 +38,10 @@ class Comment(models.Model):
         return self.comment_id
 
 class Picture(models.Model):
-    picture_id = models.CharField(max_length=11, verbose_name='图片id', blank=True, null=True, editable=False, db_index=True)
-    picture_address = models.CharField(max_length=11, verbose_name='图片地址', blank=False, null=False)
-    create_time = models.DateTimeField(verbose_name='创建时间',blank=False, null=False)
+    picture_id = models.AutoField(verbose_name='图片id',primary_key=True)
+    picture_address = models.ImageField(verbose_name="图片地址",upload='./static/image')
+    create_time = models.DateTimeField(verbose_name='创建时间')
+    update_date = models.DateTimeField(verbose_name='更新日期', auto_now=True)
 
     class Meta:
         verbose_name = "图片"
