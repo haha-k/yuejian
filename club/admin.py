@@ -4,20 +4,20 @@ from .models import *
 # Register your models here.
 @admin.register(Club)
 class ClubAdmin(admin.ModelAdmin):
-    list_display = ('id', 'clubId', 'clubName', 'clubDesc', 'hits', 'fans', 'image', 'createDate')
-    list_filter = ('createDate', 'clubName',)
-    search_fields = ('clubName',)
-    list_display_links = ('id', 'clubId', 'clubName')
+    list_display = ('club_id', 'club_name', 'club_desc', 'club_phone','club_email','hits', 'fans', 'club_head', 'create_date','update_date')
+    list_filter = ('create_date', 'club_name',)
+    search_fields = ('club_name',)
+    list_display_links = ('club_id', 'club_name')
     # list_editable = ('top', 'category')
     list_per_page = 10
 
 
 @admin.register(Attention)
 class AttentionAdmin(admin.ModelAdmin):
-    list_display = ('id','club_id','user_id','createDate')
+    list_display = ('club_id','user_id','create_date')
     list_filter = ('user_id',)
-    search_fields = ('createDate',)
-    list_display_links = ('id', 'club_id', 'user_id')
+    search_fields = ('create_date',)
+    list_display_links = ('club_id', 'user_id')
     # list_editable = ('top', 'category')
     list_per_page = 10
     # def save_model(self, request, obj, form, change):

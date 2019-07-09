@@ -10,7 +10,7 @@ class Train(models.Model):
     train_date = models.DateTimeField(verbose_name='培训日期',blank=False, null=False)
     train_price = models.CharField(max_length=5, verbose_name='培训价格',blank=False, null=False)
     train_show = models.TextField(max_length=100,verbose_name='培训简介')
-    club_id = models.ForeignKey(Club,on_delete=models.SET_NULL,verbose_name='俱乐部id', null=False)
+    club_id = models.ForeignKey(Club,on_delete=models.SET_NULL,verbose_name='俱乐部id', null=True)
     create_date = models.DateTimeField(verbose_name='上传日期', auto_now_add=True)
     update_date = models.DateTimeField(verbose_name='更新日期', auto_now=True)
 

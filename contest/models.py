@@ -8,7 +8,7 @@ class Contest(models.Model):
     contest_desc = models.TextField(max_length=4096,verbose_name='比赛简介')
     contest_date = models.DateTimeField(verbose_name='比赛日期',blank=False, null=False)
     create_date = models.DateTimeField(verbose_name='创建日期', auto_now_add=True)
-    update_date = models.DateTimeField(verbose_name='更新日期', auto_add=True)
+    update_date = models.DateTimeField(verbose_name='更新日期', auto_now=True)
 
     class Meta:
         verbose_name = "比赛"

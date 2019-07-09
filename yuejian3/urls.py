@@ -16,14 +16,15 @@ Including another URLconf
 from django.contrib import admin
 # from yuejian3.admin import admin_site
 from django.urls import path
-from django.urls import re_path
+from django.urls import re_path,include
 
 admin.site.site_header = '约健后台管理系统'
 admin.site.site_title = '约健后台管理系统'
 admin.site.index_title = '约健后台管理系统'
 
 urlpatterns = [
-    # re_path(r'admin/', admin_site.urls),
+    re_path(r'', include('api.urls')),
     path(r'admin/', admin.site.urls),
+
 
 ]

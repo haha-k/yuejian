@@ -1,6 +1,6 @@
 from django.db import models
-
-from club.models import Club
+from club.models import *
+from account.models import Account
 # Create your models here.
 
 class Blueprint(models.Model):
@@ -8,7 +8,7 @@ class Blueprint(models.Model):
     blueprint_content = models.TextField(max_length=2048, verbose_name='晒图内容', blank=False, null=False)
     blueprint_picture = models.CharField(max_length=256, verbose_name='晒图图片', blank=False, null=False)
     create_date = models.DateTimeField(verbose_name='发布时间',blank=False, null=False)
-    user_id = models.ForeignKey(User,on_delete=models.SET_NULL,verbose_name='用户id')
+    user_id = models.ForeignKey(Account,on_delete=models.SET_NULL,verbose_name='用户id',null=True)
     update_date = models.DateTimeField(verbose_name='更新日期', auto_now=True)
 
 
@@ -39,8 +39,8 @@ class Comment(models.Model):
 
 class Picture(models.Model):
     picture_id = models.AutoField(verbose_name='图片id',primary_key=True)
-    picture_address = models.ImageField(verbose_name="图片地址",upload='./static/image')
-    create_time = models.DateTimeField(verbose_name='创建时间')
+    picture_address = models.ImageField(verbose_name="图片地址",upload_to = './static/image')
+    create_time = models.DateTimeField(verbose_name='创建时间',auto_now_add=True)
     update_date = models.DateTimeField(verbose_name='更新日期', auto_now=True)
 
     class Meta:

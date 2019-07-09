@@ -11,7 +11,7 @@ class Course(models.Model):
     # club_id = models.CharField(max_length=20,verbose_name='俱乐部id', blank=False, null=False)
     club_id = models.ForeignKey(Club,on_delete=models.CASCADE,verbose_name="俱乐部id")
     course_cover = models.CharField(max_length=30,verbose_name='封面', blank=False, null=False)
-    course_duration = models.IntegerField(max_length=5,verbose_name='时长')
+    course_duration = models.IntegerField(verbose_name='时长')
     course_site = models.CharField(max_length=30,verbose_name='地点', editable=False)
     course_type = models.CharField(max_length=30,verbose_name='类型',editable=True)
     course_pubdate = models.DateTimeField(verbose_name='上传日期', auto_now_add=True)
