@@ -45,13 +45,13 @@ PROJECT_APPS= [
     'activity',
     'blueprint',
     'club',
-    'coach',
+    # 'coach',
     'compose',
     'contest',
-    'course',
-    'master',
-    'train',
-    'video',
+    # 'course',
+    # 'master',
+    # 'train',
+    # 'video',
     'account'
 
 ]

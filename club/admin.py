@@ -50,3 +50,38 @@ class AttentionAdmin(admin.ModelAdmin):
     #         obj.image.name = url
     #     super(ArticleAdmin, self).save_model(request, obj, form, change)
     #     cache.delete(cache.CACHE_HOME_KEY)
+
+
+@admin.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ('course_id','course_title','course_intro', 'club_id', 'course_cover', 'course_site','course_type')
+    list_filter = ('course_title', 'club_id',)
+    search_fields = ('course_title',)
+    list_display_links = ('course_id', 'course_title')
+    # list_editable = ('top', 'category')
+
+
+@admin.register(Train)
+class TrainAdmin(admin.ModelAdmin):
+    list_display = ('train_id', 'train_title','train_address', 'train_date', 'train_price', 'train_show','club_id')
+    list_filter = ('train_title',)
+    search_fields = ('train_title',)
+    list_display_links = ('train_id', 'train_title')
+    # list_editable = ('top', 'category')
+
+@admin.register(Video)
+class VideoAdmin(admin.ModelAdmin):
+    list_display = ('video_id', 'video_title','video_type', 'video_pic', 'club_id')
+    list_filter = ('video_title',)
+    search_fields = ('video_title',)
+    list_display_links = ('video_id', 'video_title')
+    # list_editable = ('top', 'category')
+
+
+@admin.register(Coach)
+class coachAdmin(admin.ModelAdmin):
+    list_display = ('coach_id', 'coach_name','coach_phone', 'coach_email', 'coach_age', 'coach_seniority','coach_ismaster')
+    list_filter = ('coach_id', 'coach_name',)
+    search_fields = ('coach_name',)
+    list_display_links = ('coach_id', 'coach_name')
+    # list_editable = ('top', 'category')

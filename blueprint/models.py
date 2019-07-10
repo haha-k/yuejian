@@ -39,7 +39,7 @@ class Comment(models.Model):
 
 class Picture(models.Model):
     picture_id = models.AutoField(verbose_name='图片id',primary_key=True)
-    picture_address = models.ImageField(verbose_name="图片地址",upload_to = './static/image')
+    picture_address = models.ImageField(verbose_name="图片地址",upload_to = './static/images')
     create_time = models.DateTimeField(verbose_name='创建时间',auto_now_add=True)
     update_date = models.DateTimeField(verbose_name='更新日期', auto_now=True)
 

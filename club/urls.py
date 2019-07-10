@@ -5,17 +5,11 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'club',ClubViewSet)
-
-
-# club_list = ClubViewSet.as_view(
-#     {
-#         'get':'list'
-#     }
-# )
-
-# club_detail = ClubViewSet.as_view({
-#         'get':'retrieve'
-# })
+router.register(r'attention',AttentionViewSet)
+router.register(r'course',CourseViewSet)
+router.register(r'coach',CoachViewSet)
+router.register(r'train',TrainViewSet)
+router.register(r'video',VideoViewSet)
 
 urlpatterns = [
     re_path(r'^',include(router.urls))
