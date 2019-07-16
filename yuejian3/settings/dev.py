@@ -66,7 +66,7 @@ SIMPLEUI_CONFIG = {
             'app': 'coach',
             'name': '教练管理',
             'icon': 'fas fa-user-shield',
-            'url': '/admin/coach/coach'
+            'url': '/admin/club/coach'
         },
         #    {
         #     'app': 'master',
@@ -84,7 +84,7 @@ SIMPLEUI_CONFIG = {
             'app': 'train',
             'name': '培训管理',
             'icon': 'fas fa-user-shield',
-            'url': '/admin/train/train'
+            'url': '/admin/club/train'
         },
         {
             'app': 'activity',
@@ -109,9 +109,8 @@ SIMPLEUI_CONFIG = {
             'app': 'video',
             'name': '视频管理',
             'icon': 'fas fa-user-shield',
-            'url': '/admin/video/video'
+            'url': '/admin/club/video'
         },
-
         # {
         #     'app': 'train',
         #     'name': '培训管理',
@@ -122,12 +121,11 @@ SIMPLEUI_CONFIG = {
         #         'url': '/admin/train/train'
         #     }]
         # },
-
         {
             'app': 'course',
             'name': '课程管理',
             'icon': 'fas fa-user-shield',
-            'url': '/admin/course/course'
+            'url': '/admin/club/course'
         },
         {
             'app': 'blueprint',
@@ -147,14 +145,12 @@ SIMPLEUI_CONFIG = {
             'icon': 'fas fa-user-shield',
             'url': '/admin/blueprint/picture'
         },
-
         # {
         #     'app': 'master',
         #     'name': '大师管理',
         #     'icon': 'fas fa-user-shield',
         #     'url':'/admin/master/master'
         # },
-
     ]
 }
 
