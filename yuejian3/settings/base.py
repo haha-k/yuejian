@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,7 +38,8 @@ PREREQ_APPS=[
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'guardian'
 
 ]
 
@@ -45,13 +47,8 @@ PROJECT_APPS= [
     'activity',
     'blueprint',
     'club',
-    # 'coach',
     'compose',
     'contest',
-    # 'course',
-    # 'master',
-    # 'train',
-    # 'video',
     'account'
 
 ]
@@ -115,6 +112,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# AUTHENTICATION_BACKENDS = (
+#     'django.contrib.auth.backends.ModelBackend', # 这是Django默认的
+#     'guardian.backends.ObjectPermissionBackend', # 这是guardian的
+# )
 
 
 # Internationalization

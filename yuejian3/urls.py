@@ -24,7 +24,6 @@ admin.site.index_title = '约健后台管理系统'
 
 urlpatterns = [
     re_path(r'', include('api.urls')),
+    re_path(r'', include('account.urls')),
     path(r'admin/', admin.site.urls),
-
-
 ]

@@ -158,6 +158,29 @@ SIMPLEUI_CONFIG = {
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         # 'rest_framework.permissions.IsAdminUser',
-        ),
-    # 'PAGE_SIZE': 10
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    #  'DEFAULT_RENDERER_CLASSES': (
+    # 'rest_framework.renderers.JSONRenderer',
+    # 'rest_framework.renderers.BrowsableAPIRenderer',
+    # ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    # 'account.views.CustomBackend'
+    #django默认的backend
+    'guardian.backends.ObjectPermissionBackend',
+)
+
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),    #也可以设置seconds=20
+    # 'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=30),    #也可以设置seconds=20
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
