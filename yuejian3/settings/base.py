@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+print(BASE_DIR+"---------------------------")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -37,7 +38,8 @@ PREREQ_APPS=[
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'guardian'
 
 ]
 
@@ -45,13 +47,8 @@ PROJECT_APPS= [
     'activity',
     'blueprint',
     'club',
-    # 'coach',
     'compose',
     'contest',
-    # 'course',
-    # 'master',
-    # 'train',
-    # 'video',
     'account'
 
 ]
@@ -116,6 +113,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# AUTHENTICATION_BACKENDS = (
+#     'django.contrib.auth.backends.ModelBackend', # 这是Django默认的
+#     'guardian.backends.ObjectPermissionBackend', # 这是guardian的
+# )
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -134,3 +136,30 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 AUTH_USER_MODEL = 'account.Account'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    #  'DEFAULT_RENDERER_CLASSES': (
+    # 'rest_framework.renderers.JSONRenderer',
+    # 'rest_framework.renderers.BrowsableAPIRenderer',
+    # ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    # 'account.views.CustomBackend'
+    #django默认的backend
+    'guardian.backends.ObjectPermissionBackend',
+)
+
+
+STATIC_URL = '/static/'

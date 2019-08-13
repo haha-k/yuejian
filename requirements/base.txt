@@ -1,7 +1,9 @@
 django
+mysqlclient
 django-simpleui
 djangorestframework
-# django跨域
 django-cors-headers
 
 djangorestframework-jwt
+django-guardian
+Pillow

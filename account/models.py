@@ -3,6 +3,10 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import BaseUserManager,AbstractUser,AbstractUser
 from yuejian3.choice import GenderChoice
+from guardian.shortcuts import assign
+
+
+
 class AccountManager(BaseUserManager):
     def _create_user(self,username,password,email,phone,**extra_fields):
         if not username:
@@ -23,9 +27,9 @@ class AccountManager(BaseUserManager):
         extra_fields.setdefault('is_superuser',True)
 
         if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuser must have is_staff=True.')
+            raise ValueError('****Superuser must have is_staff=True.****')
         if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_admin=True.')
+            raise ValueError('****Superuser must have is_admin=True.****')
 
         return self._create_user(username,password,email,telephone,**extra_fields)
 
@@ -45,7 +49,7 @@ class Account(AbstractUser):
     gender=models.IntegerField(blank=True,null=True,choices=GenderChoice,verbose_name="性别")
     birthdate=models.DateField(blank=True,null=True,verbose_name="生日")
     avator_url=models.CharField(max_length=255,blank=True,null=True,verbose_name="头像")
-
+    # role = models.
 
     object = AccountManager()
 
@@ -59,3 +63,6 @@ class Account(AbstractUser):
         db_table = "account"
         verbose_name = "用户"
         verbose_name_plural = "用户管理"
+
+
+

@@ -1,3 +1,2 @@
-django-simpleui
-
-django-restframework
+-r base.txt
+gunicorn

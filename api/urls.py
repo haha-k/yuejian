@@ -3,10 +3,11 @@ from club.views import *
 from blueprint.views import *
 from activity.views import *
 from contest.views import *
-# from *.views import *
+from account.views import *
 from django.urls import re_path,include
 from rest_framework.routers import DefaultRouter
-
+# from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token
+from .views import obtain_jwt_token
 
 router = DefaultRouter()
 router.register(r'clubs',ClubViewSet)
@@ -18,10 +19,15 @@ router.register(r'trains',TrainViewSet)
 router.register(r'videos',VideoViewSet)
 router.register(r'activities',ActivityViewSet)
 router.register(r'contests',ContestViewSet)
+router.register(r'accounts',AccountViewSet)
+router.register(r'users',UserViewSet)
 
 all_api = [
 
-    re_path(r'',include(router.urls))
+    re_path(r'',include(router.urls)),
+    # re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    re_path(r'^login/', obtain_jwt_token),
+    # re_path(r'^login/', LoginView.as_view()),
 ]
 
 api_v1 = [re_path(r'',include(all_api))]

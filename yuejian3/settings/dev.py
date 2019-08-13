@@ -4,6 +4,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+print("?????????")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 设置数据库为mysql
@@ -19,7 +20,6 @@ DATABASES = {
 }
 
 
-STATIC_URL = '/static/'
 
 
 # SIMPLEUI_HOME_PAGE = 'https://www.baidu.com'
@@ -38,18 +38,6 @@ SIMPLEUI_CONFIG = {
     'dynamic': True,
     'system_keep': False,
     'menus': [
-        # {
-        #     'app': 'activity',
-        #     'name': '活动管理',
-        #     'icon': 'fas fa-user-shield',
-        #     'models': [{
-        #         'name': '活动基本信息管理',
-        #         'icon': 'fa fa-user',
-        #         'url': '/admin/activity/activity'
-        #     }
-
-        #     ]
-        # },
         {
             'app': 'club',
             'name': '俱乐部管理',
@@ -68,12 +56,6 @@ SIMPLEUI_CONFIG = {
             'icon': 'fas fa-user-shield',
             'url': '/admin/club/coach'
         },
-        #    {
-        #     'app': 'master',
-        #     'name': '大师管理',
-        #     'icon': 'fas fa-user-shield',
-        #     'url':'/admin/master/master'
-        # },
         {
             'app': 'activity',
             'name': '活动管理',
@@ -111,16 +93,6 @@ SIMPLEUI_CONFIG = {
             'icon': 'fas fa-user-shield',
             'url': '/admin/club/video'
         },
-        # {
-        #     'app': 'train',
-        #     'name': '培训管理',
-        #     'icon': 'fas fa-user-shield',
-        #     'models': [{
-        #         'name': '培训基本信息管理',
-        #         'icon': 'fa fa-user',
-        #         'url': '/admin/train/train'
-        #     }]
-        # },
         {
             'app': 'course',
             'name': '课程管理',
@@ -145,19 +117,14 @@ SIMPLEUI_CONFIG = {
             'icon': 'fas fa-user-shield',
             'url': '/admin/blueprint/picture'
         },
-        # {
-        #     'app': 'master',
-        #     'name': '大师管理',
-        #     'icon': 'fas fa-user-shield',
-        #     'url':'/admin/master/master'
-        # },
     ]
 }
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        # 'rest_framework.permissions.IsAdminUser',
-        ),
-    # 'PAGE_SIZE': 10
+
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),    #也可以设置seconds=20
+    # 'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=30),    #也可以设置seconds=20
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }

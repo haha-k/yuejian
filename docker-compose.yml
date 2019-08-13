@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+     db:
+          build:  ./compose/mysql
+          ports:
+          - "3306:3306"
+          environment:
+            - MYSQL_HOST=localhost
+            - MYSQL_DATABASE=yuejian3
+            - MYSQL_USER=haha
+            # - MYSQL_PASSWORD="123"
+            # - MYSQL_ROOT_PASSWORD="123"
+            # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+          volumes:
+            - "./compose/mysql/conf.d/:/etc/mysql/conf.d/"
+            - "./compose/mysql/data:/var/lib/mysql/"
+          # command: /mysql/setup.sh
+          # external_links:
+          #   - mmysql
+          restart: always  # 若容器运行出现问题，会自动重启容器
+
+     web:
+           build: 
+                context: .
+                dockerfile: ./compose/django/Dockerfile
+           ports:
+           - "8000:8000"
+             #volumes:
+               #- ./mysite:/mysite
+           command: /gunicorn.sh  # 执行命令，有多种格式
+           links:
+           - db
+           depends_on:
+           - db
+           restart: always
+
+     nginx:
+         build: ./compose/nginx
+         ports:
+             - "0.0.0.0:80:80"
+         links:
+         - web
+         depends_on:
+         - web
+         restart: always
