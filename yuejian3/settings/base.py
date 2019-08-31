@@ -12,10 +12,13 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import datetime
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 print(BASE_DIR+"---------------------------")
+
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -138,21 +141,6 @@ USE_TZ = True
 AUTH_USER_MODEL = 'account.Account'
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        # 'rest_framework.permissions.IsAdminUser',
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
-    #  'DEFAULT_RENDERER_CLASSES': (
-    # 'rest_framework.renderers.JSONRenderer',
-    # 'rest_framework.renderers.BrowsableAPIRenderer',
-    # ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    ),
-}
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -163,3 +151,8 @@ AUTHENTICATION_BACKENDS = (
 
 
 STATIC_URL = '/static/'
+
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')

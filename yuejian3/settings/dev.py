@@ -4,7 +4,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-print("?????????")
+# print("")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 设置数据库为mysql
@@ -19,7 +19,22 @@ DATABASES = {
     }
 }
 
-
+# drf dev
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.IsAdminUser',
+        # 'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    #  'DEFAULT_RENDERER_CLASSES': (
+    # 'rest_framework.renderers.JSONRenderer',
+    # 'rest_framework.renderers.BrowsableAPIRenderer',
+    # ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
 
 
 # SIMPLEUI_HOME_PAGE = 'https://www.baidu.com'
