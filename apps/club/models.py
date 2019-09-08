@@ -75,7 +75,7 @@ class Video(models.Model):
         db_table = "video"
 
     def __str__(self):
-        return self.video_name
+        return self.video_title
 
 class Coach(models.Model):
     coach_id = models.AutoField(verbose_name='教练id',primary_key=True)

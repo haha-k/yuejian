@@ -10,3 +10,7 @@ class IsAuthorOrReadOnly(BasePermission):
             return True
 
         return obj.author == request.user
+
+class IsOwners(BasePermission):
+    def has_object_permission(self,request,view,obj):
+        return request.user.id == obj.id

@@ -5,4 +5,4 @@ from .CourseSerializer import *
 from .TrainSerializer import *
 
 __all__ = ['VideoSerializer', 'ClubSerializer', 'AttentionSerializer', 'TrainSerializer', 'CourseSerializer',
-           'CoachSerializer', 'ApplicationSerializer', 'ClubUpdateSerializer', 'CoachUpdateSerializer','MasterSerializer',]
+           'CoachSerializer', 'ApplicationSerializer', 'ClubUpdateSerializer', 'CoachUpdateSerializer','MasterSerializer',"AttentionListSerializer"]

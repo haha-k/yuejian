@@ -13,7 +13,6 @@ class PictureSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Picture
-        # fields = ("user","url")
         fields = ("picture_id","url","user", "create_time", "update_date")
 
 class PictureDetailSerializer(PictureSerializer):
@@ -56,14 +55,14 @@ class PictureListSerializer(serializers.ModelSerializer):
 
     def create(self,validated_data):
         pic = validated_data['pics']
-        print(pic)
         images = []
         user_id = 1
         for index,url in enumerate(pic):
+            print(url)
             image = Picture.objects.create(url=url,user=Account.objects.get(id=self.context['request'].user.id))
             pics = PictureSerializer(image,context=self.context)
-            print(pics.data)
             # user_id = pics.data['user']
+            print(pics.data['url'])
             images.append(pics.data['url'])
         print(user_id)
         return {

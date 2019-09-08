@@ -62,9 +62,12 @@ class AccountSerializer(serializers.ModelSerializer):
         model = Account
         fields = '__all__'
 
+
+
 class UserDetailSerializer(serializers.ModelSerializer):
     days_since_joined = serializers.SerializerMethodField()
     last_login = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S',read_only=True)
+
 
     def get_days_since_joined(self,obj):
         dt = obj.register_time.replace(tzinfo=None)

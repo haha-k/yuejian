@@ -13,6 +13,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from api.permission import *
 from django.contrib.auth import get_user_model
+from rest_framework.decorators import *
+from club.models import Club
+from rest_framework.status import *
 
 # User = get_user_model()
 
@@ -25,9 +28,28 @@ from django.contrib.auth import get_user_model
 
 
 
-class AccountViewSet(viewsets.ModelViewSet):
+class AccountViewSet(ListModelMixin,RetrieveModelMixin,viewsets.GenericViewSet):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
+    authentication_classes = (JSONWebTokenAuthentication,)
+    permission_classes = [IsAuthenticated,IsOwners]
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 
 class RegisterUserView(CreateAPIView):
@@ -103,3 +125,8 @@ class UserViewSet(CreateModelMixin,RetrieveModelMixin,UpdateModelMixin,ListModel
 
     def perform_update(self,serializer):
         return serializer.save()
+
+    @detail_route(methods=['get'],url_path='clubs', url_name='clubs',authentication_classes=(JSONWebTokenAuthentication,))
+    def clubs(self, request, pk=None,*args, **kwargs):
+        clubs = Club.objects.filter(club_administrator=pk).values()
+        return Response(clubs,status=HTTP_200_OK)

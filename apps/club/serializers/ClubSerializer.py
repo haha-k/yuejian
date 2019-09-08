@@ -41,3 +41,28 @@ class AttentionSerializer(serializers.ModelSerializer):
                 message='已经关注'
             )]
 
+
+class AttentionListSerializer(serializers.ModelSerializer):
+    create_date = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S',read_only=True)
+    update_date = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S',read_only=True)
+
+
+    username = serializers.SerializerMethodField(read_only=True)
+    club_name = serializers.SerializerMethodField(read_only=True)
+
+    def get_club_name(self,obj):
+        if obj.club:
+            return obj.club.club_name
+        else:
+            return None
+
+    def get_username(self,obj):
+        if obj.user:
+            return obj.user.username
+        else:
+            return None
+
+    class Meta:
+        model = Attention
+        fields = '__all__'
+
